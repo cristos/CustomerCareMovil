@@ -1,42 +1,1204 @@
-﻿<!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
+<!DOCTYPE HTML>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Hello World</title>
-    </head>
-    <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
-        </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
-    </body>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" >
+		<title>Cibernética de México</title>
+
+		<link rel="stylesheet" href="css/themes/cibernetica.min.css" />
+		<link rel="stylesheet" href="css/jquery.mobile.structure-1.2.0.min.css" />
+		<link rel="stylesheet" href="css/jquery.mobile.simultaneous-transitions-replace.css" />
+
+		<script src="js/jquery-1.8.3.min.js"></script>
+		<script src="js/jquery.mobile.simultaneous-transitions-replace.js"></script>
+		<script src="js/jquery.mobile-1.2.0.min.js"></script>
+		<script src="main.js"></script>
+		<script src="phonegap.js"></script>
+		<script src="js/jquery.blockUI.js"></script>
+
+		<script type="text/javascript" src="js/xdate.js"></script>
+		<script type="text/javascript" src="js/jquery.validate.min.js"></script>
+		<script type="text/javascript" src="js/additional-methods.min.js"></script>
+		<script type="text/javascript" src="js/messages_es.js"></script>
+		<script type="text/javascript" src="js/jquery.mobile.validate.js"></script>
+
+		<style>
+			LABEL.error {
+				width: 98%;
+				padding: 1%;
+				background: #c00;
+				color: #fff;
+				text-align: center;
+				display: block;
+				margin: 1% 0;
+				text-shadow: none;
+			}
+
+		</style>
+		<script>
+			$(document).on('mobileinit', function() {
+				$.mobile.defaultPageTransition = 'slide';
+				$.event.special.swipe.horizontalDistanceThreshold = 10;
+			});
+
+			function init() {
+				document.addEventListener("deviceready", onDeviceReady, false);
+
+			}
+
+			function onDeviceReady() {
+				document.addEventListener("backbutton", onBackKeyDown, false);
+				document.addEventListener("menubutton", onMenuKeyDown, false);
+			 	document.addEventListener("offline", onOffline, false);
+			 	document.addEventListener("online", onOnline, false);
+
+			}
+
+			function onMenuKeyDown() {
+
+				$("#popupMenu").popup("open");
+			}
+
+			function onBackKeyDown() {
+				if (window.localStorage["userid"] != undefined) {
+					$.mobile.changePage("main.html");
+				}
+			}
+			
+			 function onOffline() {
+			  $.blockUI({ message: 'Error de Conexión a Internet' }); 	
+			  window.localStorage["offline"]=1;	
+		    }
+		    
+		     function onOnline() {
+				if (window.localStorage["offline"] == 1) {
+					$.unblockUI();
+					window.localStorage["offline"]=0;
+				}
+		    }
+
+
+
+			$(function () {
+			var originalHideMethod = $.mobile.hidePageLoadingMsg;
+			$.mobile.hidePageLoadingMsg = function () {
+			$("body").unblock();
+			originalHideMethod.apply(this, arguments);
+			};
+			var originalShowMethod = $.mobile.showPageLoadingMsg;
+			$.mobile.showPageLoadingMsg = function () {
+			$("body").block({ "message": null });
+			originalShowMethod.apply(this, arguments);
+			};
+			})();
+
+		</script>
+	</head>
+
+	<body onload="init()">
+
+		<!--<div id="launcherPage" data-role="page">
+
+		</div>-->
+
+		<div id="loginPage" data-role="page">
+
+			<div data-role="header">
+				<h1><img src="images/logo2.png" style="margin: 0 auto; max-width: 100%; height: auto;"/ align="absmiddle"></h1>
+			</div>
+
+			<div data-role="content">
+
+				<form id="loginForm">
+					<div data-role="fieldcontain" class="ui-hide-label">
+						<label for="username">Usuario:</label>
+						<input type="text" name="username" id="username" value="" placeholder="Usuario" />
+					</div>
+
+					<div data-role="fieldcontain" class="ui-hide-label">
+						<label for="password">Contraseña:</label>
+						<input type="password" name="password" id="password" value="" placeholder="Contraseña" />
+					</div>
+
+					<input type="submit" value="Continuar" id="submitButton">
+				</form>
+
+			</div>
+
+			<div data-role="footer" data-position="fixed">
+				<h4>&copy; Cibern&eacute;tica de M&eacute;xico</h4>
+			</div>
+
+		</div>
+		<script>
+			function detalle_ticket(arg) {
+				//arg=JSON.parse(unescape(arg));
+				window.localStorage["tickets"] = arg;
+				//alert(JSON.stringify(window.localStorage["tickets"]));
+				$.mobile.changePage("detail.html");
+			}
+
+			function color_estado(estado) {
+				switch (estado) {
+					case 1:
+						var coloredo = '#ADD8E6';
+						break;
+					case 2:
+						var coloredo = '#FFFACD';
+						break;
+					case 3:
+						var coloredo = '#EEA0A0';
+						break;
+					case 4:
+						var coloredo = '#D3D3D3';
+						break;
+					case 5:
+						var coloredo = '#808080';
+						break;
+				}
+				return coloredo;
+			}
+
+			function calcula_color(apertura, limite, cierre) {
+
+				var dias = apertura.substr(0, 2);
+				var mes = apertura.substr(2, 3);
+
+				switch (mes) {
+					case 'ene':
+						var mes = '0';
+						break;
+					case 'feb':
+						var mes = '1';
+						break;
+					case 'mar':
+						var mes = '2';
+						break;
+					case 'abr':
+						var mes = '3';
+						break;
+					case 'may':
+						var mes = '4';
+						break;
+					case 'jun':
+						var mes = '5';
+						break;
+					case 'jul':
+						var mes = '6';
+						break;
+					case 'ago':
+						var mes = '7';
+						break;
+					case 'sep':
+						var mes = '8';
+						break;
+					case 'oct':
+						var mes = '9';
+						break;
+					case 'nov':
+						var mes = '10';
+						break;
+					case 'dic':
+						var mes = '11';
+						break;
+
+				}
+
+				var ano = "20" + apertura.substr(5, 2);
+				var horas = apertura.substr(8, 2);
+				var minutos = apertura.substr(11, 2);
+				var inicio = new XDate(ano, mes, dias, horas, minutos);
+
+				var diasf = limite.substr(0, 2);
+				var mesf = limite.substr(2, 3);
+				switch (mesf) {
+					case 'ene':
+						var mesf = '0';
+						break;
+					case 'feb':
+						var mesf = '1';
+						break;
+					case 'mar':
+						var mesf = '2';
+						break;
+					case 'abr':
+						var mesf = '3';
+						break;
+					case 'may':
+						var mesf = '4';
+						break;
+					case 'jun':
+						var mesf = '5';
+						break;
+					case 'jul':
+						var mesf = '6';
+						break;
+					case 'ago':
+						var mesf = '7';
+						break;
+					case 'sep':
+						var mesf = '8';
+						break;
+					case 'oct':
+						var mesf = '9';
+						break;
+					case 'nov':
+						var mesf = '10';
+						break;
+					case 'dic':
+						var mesf = '11';
+						break;
+
+				}
+				var anof = "20" + limite.substr(5, 2);
+				var horas = limite.substr(8, 2);
+				var minutos = limite.substr(11, 2);
+				var fin = new XDate(anof, mesf, diasf, horas, minutos);
+
+				//actual=new XDate(parseInt(window.localStorage["instante"]));
+
+				if (cierre != '') {
+
+					var diasc = cierre.substr(0, 2);
+					var mesc = cierre.substr(2, 3);
+					switch (mesc) {
+						case 'ene':
+							var mesc = '0';
+							break;
+						case 'feb':
+							var mesc = '1';
+							break;
+						case 'mar':
+							var mesc = '2';
+							break;
+						case 'abr':
+							var mesc = '3';
+							break;
+						case 'may':
+							var mesc = '4';
+							break;
+						case 'jun':
+							var mesc = '5';
+							break;
+						case 'jul':
+							var mesc = '6';
+							break;
+						case 'ago':
+							var mesc = '7';
+							break;
+						case 'sep':
+							var mesc = '8';
+							break;
+						case 'oct':
+							var mesc = '9';
+							break;
+						case 'nov':
+							var mesc = '10';
+							break;
+						case 'dic':
+							var mesc = '11';
+							break;
+
+					}
+					var anoc = "20" + cierre.substr(5, 2);
+					var horas = cierre.substr(8, 2);
+					var minutos = cierre.substr(11, 2);
+					var actual = new XDate(anoc, mesc, diasc, horas, minutos);
+				} else {
+					var actual = new XDate();
+				}
+				nactual = actual.getTime();
+				nlimite = fin.getTime();
+
+				if (nactual <= nlimite) {
+					duracion = Math.round(inicio.diffMinutes(fin));
+					recorrido = Math.round(inicio.diffMinutes(actual));
+
+					var rojo = Math.round(recorrido * 240 / duracion);
+					var verde = 128 - Math.round(recorrido * 64 / duracion);
+					var red = rojo.toString(16);
+					if (red.length < 2) {
+						red = "0" + red;
+					}
+					var green = verde.toString(16);
+					if (green.length < 2) {
+						green = "0" + green;
+					}
+					var color = red + green + '00';
+					return color;
+				} else {
+					return 'F00000';
+				}
+			}
+
+			function listartickets() {
+				$.mobile.showPageLoadingMsg();
+				$('#contador').text("");
+				$('#bmore').hide();
+				if (window.localStorage["inicio"] == undefined) {
+					window.localStorage["inicio"] = 0;
+				}
+				window.localStorage["fin"] = parseInt(window.localStorage["inicio"]) + 10;
+
+				$.ajax({
+					url : 'http://appscore.wadil.mx/cibernetica/proxy.php',
+					data : {
+						metodo : 'DatosUsuario',
+						parametros : {
+							usu : window.localStorage["userid"]
+						}
+					},
+					dataType : 'jsonp',
+					jsonp : 'callback',
+					jsonpCallback : 'jsonpCallback',
+					success : function(res) {
+						//$.mobile.showPageLoadingMsg();
+
+						$('#lista_tickets').empty();
+						var datos = jQuery.parseJSON(res.DatosUsuarioResult);
+						window.localStorage["ps"] = datos.ps;
+						var filtro = datos.fo;
+						var elementos_filtro = filtro.split('!');
+						if (window.localStorage["edoactual"] == undefined) {
+							window.localStorage["edoactual"] = 2;
+						}
+
+						switch (window.localStorage["edoactual"]) {
+							case '1':
+								elementos_filtro[2] = 1;
+								break;
+							case '2':
+								elementos_filtro[2] = 2;
+								break;
+							case '3':
+								elementos_filtro[2] = 4;
+								break;
+							case '4':
+								elementos_filtro[2] = 8;
+								break;
+							case '5':
+								elementos_filtro[2] = 16;
+								break;
+						}
+
+						elementos_filtro[5] = window.localStorage["buscador"];
+						filtro = elementos_filtro.join('!');
+						//alert(filtro);
+
+						$.ajax({
+							url : 'http://appscore.wadil.mx/cibernetica/proxy.php',
+							data : {
+								metodo : 'Instante'
+							},
+							dataType : 'jsonp',
+							jsonp : 'callback',
+							jsonpCallback : 'jsonpCallback',
+							success : function(res_1) {
+
+								window.localStorage["instante"] = res_1.InstanteResult;
+								$.ajax({
+									url : 'http://appscore.wadil.mx/cibernetica/proxy.php',
+									data : {
+										metodo : 'GetDataAndCount',
+										parametros : {
+											startRowIndex : window.localStorage["inicio"],
+											maximumRows : 10,
+											filtro : filtro + "!",
+											usu : window.localStorage["userid"]
+										}
+									},
+									dataType : 'jsonp',
+									jsonp : 'callback',
+									jsonpCallback : 'jsonpCallback',
+									success : function(res2) {
+
+										var tickets = jQuery.parseJSON(res2.GetDataAndCountResult);
+
+										window.localStorage["ctickets"] = tickets.c;
+										if(window.localStorage["ctickets"] < 10){
+										$('#contador').text("Mostrando " + window.localStorage["ctickets"] + " de " + window.localStorage["ctickets"]);	
+										}else{
+										$('#contador').text("Mostrando " + window.localStorage["fin"] + " de " + window.localStorage["ctickets"]);
+										}
+
+										if (window.localStorage["fin"] < parseInt(window.localStorage["ctickets"])) {
+											$('#bmore').show();
+										} else {
+											$('#bmore').hide();
+										}
+
+										$.each(tickets.d, function(i, row) {
+
+											//	edocolor=color_estado(row['eo']);
+
+											if (row['eo'] == window.localStorage["edoactual"]) {
+												st_color = calcula_color(row['aa'], row['le']['Key'], row['ca']);
+												$('#lista_tickets').append('<li style="color:#FFFFFF !important; background:#' + st_color + ';"><a class="liticket" href="#" onClick="detalle_ticket(\'' + escape(JSON.stringify(row)) + '\');"><h3 style="color:#FFFFFF !important;  text-shadow: none !important;">' + row['ao'].toUpperCase() + '</h3><p style="color:#FFFFFF !important;  text-shadow: none !important;">' + row['de'] + '</p><p style="color:#FFFFFF !important;  text-shadow: none !important;"><strong>' + row['co'] + '</strong></p><p style="color:#FFFFFF !important;  text-shadow: none !important;" class="ui-li-aside"><strong>' + row['le']['Key'] + '</strong></p></a></li>').listview('refresh');
+
+											}
+										});
+										$.mobile.hidePageLoadingMsg();
+									}
+								});
+
+							}
+						});
+
+					}
+				});
+
+			};
+
+			function listartickets2() {
+				$.mobile.loading('show');
+				$('#contador').text("");
+				$('#bmore').hide();
+				if (window.localStorage["inicio"] == undefined) {
+					window.localStorage["inicio"] = 0;
+				}
+				window.localStorage["fin"] = parseInt(window.localStorage["inicio"]) + 10;
+				$.ajax({
+					url : 'http://appscore.wadil.mx/cibernetica/proxy.php',
+					data : {
+						metodo : 'DatosUsuario',
+						parametros : {
+							usu : window.localStorage["userid"]
+						}
+					},
+					dataType : 'jsonp',
+					jsonp : 'callback',
+					jsonpCallback : 'jsonpCallback',
+					success : function(res) {
+						//$.mobile.showPageLoadingMsg();
+						//$('#lista_tickets').empty();
+						var datos = jQuery.parseJSON(res.DatosUsuarioResult);
+						window.localStorage["ps"] = datos.ps;
+						var filtro = datos.fo;
+						var elementos_filtro = filtro.split('!');
+						if (window.localStorage["edoactual"] == undefined) {
+							window.localStorage["edoactual"] = 2;
+						}
+
+						switch (window.localStorage["edoactual"]) {
+							case '1':
+								elementos_filtro[2] = 1;
+								break;
+							case '2':
+								elementos_filtro[2] = 2;
+								break;
+							case '3':
+								elementos_filtro[2] = 4;
+								break;
+							case '4':
+								elementos_filtro[2] = 8;
+								break;
+							case '5':
+								elementos_filtro[2] = 16;
+								break;
+						}
+
+						elementos_filtro[5] = window.localStorage["buscador"];
+						filtro = elementos_filtro.join('!');
+						//alert(filtro);
+
+						$.ajax({
+							url : 'http://appscore.wadil.mx/cibernetica/proxy.php',
+							data : {
+								metodo : 'Instante'
+							},
+							dataType : 'jsonp',
+							jsonp : 'callback',
+							jsonpCallback : 'jsonpCallback',
+							success : function(res_1) {
+								window.localStorage["instante"] = res_1.InstanteResult;
+								$.ajax({
+									url : 'http://appscore.wadil.mx/cibernetica/proxy.php',
+									data : {
+										metodo : 'GetDataAndCount',
+										parametros : {
+											startRowIndex : window.localStorage["inicio"],
+											maximumRows : 10,
+											filtro : filtro + "!",
+											usu : window.localStorage["userid"]
+										}
+									},
+									dataType : 'jsonp',
+									jsonp : 'callback',
+									jsonpCallback : 'jsonpCallback',
+									success : function(res2) {
+										var tickets = jQuery.parseJSON(res2.GetDataAndCountResult);
+										window.localStorage["ctickets"] = tickets.c;
+										if(window.localStorage["ctickets"] < 10){
+										$('#contador').text("Mostrando " + window.localStorage["ctickets"] + " de " + window.localStorage["ctickets"]);	
+										}else{
+										$('#contador').text("Mostrando " + window.localStorage["fin"] + " de " + window.localStorage["ctickets"]);
+										}
+										if (window.localStorage["fin"] < parseInt(window.localStorage["ctickets"])) {
+											$('#bmore').show();
+										} else {
+											$('#bmore').hide();
+										}
+										$.each(tickets.d, function(i, row) {
+
+											//	edocolor=color_estado(row['eo']);
+
+											if (row['eo'] == window.localStorage["edoactual"]) {
+												st_color = calcula_color(row['aa'], row['le']['Key'], row['ca']);
+												$('#lista_tickets').append('<li style="color:#FFFFFF !important; background:#' + st_color + ';"><a class="liticket" href="#" onClick="detalle_ticket(\'' + escape(JSON.stringify(row)) + '\');"><h3 style="color:#FFFFFF !important;  text-shadow: none !important;">' + row['ao'].toUpperCase() + '</h3><p style="color:#FFFFFF !important;  text-shadow: none !important;">' + row['de'] + '</p><p style="color:#FFFFFF !important;  text-shadow: none !important;"><strong>' + row['co'] + '</strong></p><p style="color:#FFFFFF !important;  text-shadow: none !important;" class="ui-li-aside"><strong>' + row['le']['Key'] + '</strong></p></a></li>').listview('refresh');
+
+											}
+										});
+										$.mobile.loading('hide');
+									}
+								});
+
+							}
+						});
+
+					}
+				});
+
+			};
+			
+			
+			function listarticket(idticket) {
+				$.mobile.showPageLoadingMsg();
+				
+				$.ajax({
+					url : 'http://appscore.wadil.mx/cibernetica/proxy.php',
+					data : {
+						metodo : 'DatosUsuario',
+						parametros : {
+							usu : window.localStorage["userid"]
+						}
+					},
+					dataType : 'jsonp',
+					jsonp : 'callback',
+					jsonpCallback : 'jsonpCallback',
+					success : function(res) {
+						//$.mobile.showPageLoadingMsg();
+						//$('#lista_tickets').empty();
+						var datos = jQuery.parseJSON(res.DatosUsuarioResult);
+						window.localStorage["ps"] = datos.ps;
+						var filtro = datos.fo;
+						var elementos_filtro = filtro.split('!');
+						
+						elementos_filtro[5] = idticket;
+						filtro = elementos_filtro.join('!');
+						//alert(filtro);
+
+						$.ajax({
+							url : 'http://appscore.wadil.mx/cibernetica/proxy.php',
+							data : {
+								metodo : 'Instante'
+							},
+							dataType : 'jsonp',
+							jsonp : 'callback',
+							jsonpCallback : 'jsonpCallback',
+							success : function(res_1) {
+								window.localStorage["instante"] = res_1.InstanteResult;
+								$.ajax({
+									url : 'http://appscore.wadil.mx/cibernetica/proxy.php',
+									data : {
+										metodo : 'GetDataAndCount',
+										parametros : {
+											startRowIndex : 0,
+											maximumRows : 1,
+											filtro : filtro + "!",
+											usu : window.localStorage["userid"]
+										}
+									},
+									dataType : 'jsonp',
+									jsonp : 'callback',
+									jsonpCallback : 'jsonpCallback',
+									success : function(res2) {
+										var tickets = jQuery.parseJSON(res2.GetDataAndCountResult);
+										
+										$.each(tickets.d, function(i, row) {
+
+											//	edocolor=color_estado(row['eo']);
+											detalle_ticket(escape(JSON.stringify(row))); 
+																							
+										});
+										$.mobile.hidePageLoadingMsg();
+									}
+								});
+
+							}
+						});
+
+					}
+				});
+
+			};
+
+			function contains(a, obj) {
+                for (var i = 0; i < a.length; i++) {
+                    if (a[i] === obj) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            
+            function permiso(n) { 
+                return contains(window.localStorage["ps"].split(","), "" + n); 
+            }
+			
+
+			$("#loginForm").on("submit", handleLogin);
+			$("#loginPage").live("pageinit", function(e) {
+
+				checkPreAuth();
+			});
+
+			$('#main_page').live('pageshow', function(event) {
+
+				if (window.localStorage["buscador"] != undefined) {
+					$("#csearch").val(window.localStorage["buscador"]);
+				}
+
+				listartickets();
+				$(function() {
+					$("#listadodeticket").bind('swipeleft', function(event) {
+
+						tmpedo = window.localStorage['edoactual'];
+						window.localStorage['inicio'] = 0;
+						window.localStorage['edoactual'] = parseInt(window.localStorage['edoactual']) + 1;
+						if (window.localStorage['edoactual'] == 6) {
+							window.localStorage['edoactual'] = 1;
+						}
+						$("#tab" + tmpedo).removeClass("ui-btn-active ui-state-persist");
+						$("#tab" + window.localStorage['edoactual']).addClass("ui-btn-active ui-state-persist");
+
+						listartickets();
+
+					});
+					$("#listadodeticket").bind('swiperight', function(event) {
+
+						tmpedo = window.localStorage['edoactual'];
+						window.localStorage['inicio'] = 0;
+						window.localStorage['edoactual'] = parseInt(window.localStorage['edoactual']) - 1;
+						if (window.localStorage['edoactual'] == 0) {
+							window.localStorage['edoactual'] = 5;
+						}
+						$("#tab" + tmpedo).removeClass("ui-btn-active ui-state-persist");
+						$("#tab" + window.localStorage['edoactual']).addClass("ui-btn-active ui-state-persist");
+						listartickets();
+					});
+				});
+
+				if (window.localStorage["edoactual"] == undefined) {
+					window.localStorage["edoactual"] = 2;
+				}
+				$("#tab" + window.localStorage['edoactual']).addClass("ui-btn-active ui-state-persist");
+				$("#csearch").on("change", function(event, ui) {
+					window.localStorage["buscador"] = $(this).val();
+					window.localStorage["inicio"] = 0
+					listartickets();
+				});
+
+			});
+
+			$('#detail_page').live('pagebeforeshow', function(event) {
+				$.mobile.showPageLoadingMsg();
+				arg = JSON.parse(unescape(window.localStorage["tickets"]));
+				//alert(JSON.stringify(arg));
+				//alert(window.localStorage["ps"]);
+				$("#titulo").text("Incidencia " + arg.co);
+				$("#responsable").text("Responsable: " + arg.re.n);
+				$("#asunto").val(arg.ao);
+				$("#detalle").val(arg.de);
+				$("#solucion").val(arg.sn);
+				var esresponsable = 0;
+				if (arg.re.c == window.localStorage["userid2"]) {
+					esresponsable = 1;
+				}
+				var ocerrar = '<li><a href="cerrar.html">Cerrar</a></li>';
+				var oescalar = '<li><a href="escalar.html">Escalar</a></li>';
+				var ovalidar = '<li><a href="svalidacion.html">Solicitar Validación</a></li>';
+				var ovalida = '<li><a href="validar.html">Validar</a></li>';
+				var orechaza = '<li><a href="rechazar.html">Rechazar</a></li>';
+				var oactivar = '<li><a href="activar.html">Cancelar</a></li>';
+				var ocancelar = '<li><a href="cancelar.html">Cancelar</a></li>';
+				var oseguimiento = '<li><a href="seguimiento.html">Seguimiento</a></li>';
+
+				switch(arg.eo) {
+					case 1:
+							$('#opcionesticket').append(oseguimiento);
+						if (esresponsable == 1) {
+							$('#opcionesticket').append(oactivar);
+						}
+						if (permiso(1)) {
+						//if (window.localStorage["ps"].indexOf("1,") != -1) {
+							$('#opcionesticket').append(ocancelar);
+						}
+						break;
+					case 2:
+							$('#opcionesticket').append(oseguimiento);
+						if (esresponsable == 1) {
+
+							$('#opcionesticket').append(ocerrar);
+							$('#opcionesticket').append(oescalar);
+							$('#opcionesticket').append(ovalidar);
+
+						} else {
+							if (permiso(2)) {
+						    //if (window.localStorage["ps"].indexOf(",2,") != -1) {
+								$('#opcionesticket').append(oescalar);
+							}
+						}
+						if (permiso(1)) {
+						//if (window.localStorage["ps"].indexOf("1,") != -1) {
+							$('#opcionesticket').append(ocancelar);
+						}
+						break;
+					case 3:
+							$('#opcionesticket').append(oseguimiento);
+						if (esresponsable == 1) {
+							$('#opcionesticket').append(oescalar);
+							$('#opcionesticket').append(ovalida);
+							$('#opcionesticket').append(orechaza);
+
+						}
+						if (permiso(1)) {
+						//if (window.localStorage["ps"].indexOf("1,") != -1) {
+							$('#opcionesticket').append(ocancelar);
+						}
+						break;
+					case 4:
+						if (permiso(1)) {
+						//if (window.localStorage["ps"].indexOf("1,") != -1) {
+							$('#opcionesticket').append(ocancelar);
+						}
+						break;
+
+				}
+
+				$('#opcionesticket').listview('refresh');
+				$.mobile.hidePageLoadingMsg();
+
+			});
+
+			$('#history_page').live('pageshow', function(event) {
+				$.mobile.showPageLoadingMsg();
+				arg = JSON.parse(unescape(window.localStorage["tickets"]));
+				$.ajax({
+					url : 'http://appscore.wadil.mx/cibernetica/proxy.php',
+					data : {
+						metodo : 'ObtieneEventos',
+						parametros : {
+							cod : arg.co,
+							usu : window.localStorage["userid"]
+						}
+					},
+					dataType : 'jsonp',
+					jsonp : 'callback',
+					jsonpCallback : 'jsonpCallback',
+					success : function(res) {
+						var eventos = jQuery.parseJSON(res.ObtieneEventosResult);
+						$.each(eventos, function(i, row) {
+							//str = row['on'].replace(/:/g, ":</b></dt><dd>");
+							//$('#lista_eventos').append("<dt><b>" + row["fa"] + " " + str + "</dd><hr/>");
+							$('#lista_eventos').append("<li><img src='images/e"+row["te"]+".png' class='ui-li-icon'>" + row["fa"] + " "+ row['on']+"</li> ").listview('refresh');
+						});
+						$.mobile.hidePageLoadingMsg();
+					}
+				});
+
+			});
+
+			$('#svalidacion').live('pageshow', function(event) {
+
+				$('#select-choice-0').selectmenu('disable');
+				$('[type="submit"]').button('disable');
+				$.mobile.loading('show');
+				$.ajax({
+					url : 'http://appscore.wadil.mx/cibernetica/proxy.php',
+					data : {
+						metodo : 'ObtieneUsuarios',
+						parametros : {
+							usu : window.localStorage["userid"]
+						}
+					},
+					dataType : 'jsonp',
+
+					success : function(res) {
+
+						var eventos = jQuery.parseJSON(res.ObtieneUsuariosResult);
+						$.each(eventos, function(i, row) {
+							$('#select-choice-0').append('<option value="' + row["co"] + '">' + row["ne"] + '</option>').selectmenu('refresh');
+						});
+
+						$('#select-choice-0').selectmenu('enable');
+						$('[type="submit"]').button('enable');
+						$.mobile.loading('hide');
+
+						var form = $('#form_svalidacion');
+						form.bind('submit', function() {
+							form.validate();
+							if (form.valid()) {
+								arg = JSON.parse(unescape(window.localStorage["tickets"]));
+								res = $("#select-choice-0").val();
+								men = $("#men").val();
+
+								$.mobile.showPageLoadingMsg();
+
+								$.ajax({
+									url : 'http://appscore.wadil.mx/cibernetica/proxy.php',
+									data : {
+										metodo : 'solVal',
+										parametros : {
+											cod : arg.co,
+											res : res,
+											men : men,
+											usu : window.localStorage["userid"]
+										}
+									},
+									dataType : 'jsonp',
+									jsonp : 'callback',
+									jsonpCallback : 'jsonpCallback',
+									success : function(res) {
+										
+										alert("Solicitud Enviada");
+										//$.mobile.changePage("detail.html");
+										$.mobile.hidePageLoadingMsg();
+										listarticket(arg.co);
+									}
+								});
+
+							} else {
+								alert("Por Favor Complete todos los Campos Correctamente");
+							}
+							return false;
+						});
+
+					}
+				});
+
+			});
+
+			$('#cerrar').live('pageshow', function(event) {
+
+				$('#cselect-choice-0').selectmenu('disable');
+				$('[type="submit"]').button('disable');
+				$.mobile.loading('show');
+				$.ajax({
+					url : 'http://appscore.wadil.mx/cibernetica/proxy.php',
+					data : {
+						metodo : 'ObtieneConclusiones',
+						parametros : {
+							usu : window.localStorage["userid"]
+						}
+					},
+					dataType : 'jsonp',
+
+					success : function(res) {
+
+						var eventos = jQuery.parseJSON(res.ObtieneConclusionesResult);
+						var padres = new Array();
+						$.each(eventos, function(i, row) {
+							if (row["pe"] == "-1") {
+								$('#cselect-choice-0').append('<option value="' + row["co"] + '">' + row["dn"] + '</option>').selectmenu('refresh');
+							} else {
+								if (padres.indexOf(row["pe"]) == -1) {
+									padres.push(row["pe"]);
+								}
+
+							}
+						});
+
+						$('#cselect-choice-0').selectmenu('enable');
+						$('[type="submit"]').button('enable');
+						$.mobile.loading('hide');
+						//	alert(JSON.stringify(padres));
+						$('#cselect-choice-0').change(function() {
+
+							if (padres.indexOf($(this).val()) != -1) {
+								seleccion = $(this).val();
+								$('#select-choice-1').empty();
+								$.each(eventos, function(i, row) {
+									if (row["pe"] == seleccion) {
+										$('#select-choice-1').append('<option value="' + row["co"] + '">' + row["dn"] + '</option>').selectmenu('refresh');
+									}
+								});
+								$("#dddd-wrapper").removeClass('ui-screen-hidden');
+							} else {
+								$("#dddd-wrapper").addClass('ui-screen-hidden');
+							}
+						});
+
+						var form = $('#form_cerrar');
+						form.bind('submit', function() {
+							form.validate();
+							if (form.valid()) {
+								arg = JSON.parse(unescape(window.localStorage["tickets"]));
+
+								if ($('#select-choice-1').val() == "") {
+									conc = $("#cselect-choice-0").val();
+								} else {
+									conc = $('#select-choice-1').val();
+								}
+								sol = $("#cmen").val();
+
+								$.mobile.showPageLoadingMsg();
+
+								$.ajax({
+									url : 'http://appscore.wadil.mx/cibernetica/proxy.php',
+									data : {
+										metodo : 'Cerrar',
+										parametros : {
+											cod : arg.co,
+											conc : conc,
+											sol : sol
+										}
+									},
+									dataType : 'jsonp',
+									jsonp : 'callback',
+									jsonpCallback : 'jsonpCallback',
+									success : function(res) {
+										alert("Incidencia Cerrada");
+										$.mobile.hidePageLoadingMsg();
+										listarticket(arg.co);
+									}
+								});
+
+							} else {
+								alert("Por Favor Complete todos los Campos Correctamente");
+							}
+							return false;
+						});
+
+					}
+				});
+
+			});
+
+			$('#validar').live('pageshow', function(event) {
+
+				var form = $('#form_validar');
+				form.bind('submit', function() {
+					form.validate();
+					if (form.valid()) {
+						arg = JSON.parse(unescape(window.localStorage["tickets"]));
+
+						men = $("#vmen").val();
+
+						$.mobile.showPageLoadingMsg();
+
+						$.ajax({
+							url : 'http://appscore.wadil.mx/cibernetica/proxy.php',
+							data : {
+								metodo : 'Validar',
+								parametros : {
+									cod : arg.co,
+									men : men,
+									usu : window.localStorage["userid"]
+								}
+							},
+							dataType : 'jsonp',
+							jsonp : 'callback',
+							jsonpCallback : 'jsonpCallback',
+							success : function(res) {
+								alert("Incidencia Validada");
+								$.mobile.hidePageLoadingMsg();
+							    listarticket(arg.co);
+							}
+						});
+
+					} else {
+						alert("Por Favor Complete todos los Campos Correctamente");
+					}
+					return false;
+				});
+
+			});
+
+			$('#rechazar').live('pageshow', function(event) {
+
+				var form = $('#form_rechazar');
+				form.bind('submit', function() {
+					form.validate();
+					if (form.valid()) {
+						arg = JSON.parse(unescape(window.localStorage["tickets"]));
+
+						men = $("#rmen").val();
+
+						$.mobile.showPageLoadingMsg();
+
+						$.ajax({
+							url : 'http://appscore.wadil.mx/cibernetica/proxy.php',
+							data : {
+								metodo : 'Rechazar',
+								parametros : {
+									cod : arg.co,
+									men : men,
+									usu : window.localStorage["userid"]
+								}
+							},
+							dataType : 'jsonp',
+							jsonp : 'callback',
+							jsonpCallback : 'jsonpCallback',
+							success : function(res) {
+								alert("Incidencia Rechazada");
+								$.mobile.hidePageLoadingMsg();
+								listarticket(arg.co);
+							}
+						});
+
+					} else {
+						alert("Por Favor Complete todos los Campos Correctamente");
+					}
+					return false;
+				});
+
+			});
+
+			$('#escalar').live('pageshow', function(event) {
+
+				$('#eselect-choice-0').selectmenu('disable');
+				$('[type="submit"]').button('disable');
+				$.mobile.loading('show');
+				$.ajax({
+					url : 'http://appscore.wadil.mx/cibernetica/proxy.php',
+					data : {
+						metodo : 'ObtieneUsuarios',
+						parametros : {
+							usu : window.localStorage["userid"]
+						}
+					},
+					dataType : 'jsonp',
+
+					success : function(res) {
+
+						var eventos = jQuery.parseJSON(res.ObtieneUsuariosResult);
+						$.each(eventos, function(i, row) {
+							$('#eselect-choice-0').append('<option value="' + row["co"] + '">' + row["ne"] + '</option>').selectmenu('refresh');
+						});
+
+						$('#eselect-choice-0').selectmenu('enable');
+						$('[type="submit"]').button('enable');
+						$.mobile.loading('hide');
+
+						var form = $('#form_escalar');
+						form.bind('submit', function() {
+							form.validate();
+							if (form.valid()) {
+								arg = JSON.parse(unescape(window.localStorage["tickets"]));
+								res = $("#eselect-choice-0").val();
+								men = $("#emen").val();
+
+								$.mobile.showPageLoadingMsg();
+
+								$.ajax({
+									url : 'http://appscore.wadil.mx/cibernetica/proxy.php',
+									data : {
+										metodo : 'Escalar',
+										parametros : {
+											cod : arg.co,
+											res : res,
+											men : men,
+											usu : window.localStorage["userid"]
+										}
+									},
+									dataType : 'jsonp',
+									jsonp : 'callback',
+									jsonpCallback : 'jsonpCallback',
+									success : function(res) {
+										alert("Incidencia Escalada");
+										$.mobile.hidePageLoadingMsg();
+										listarticket(arg.co);
+									}
+								});
+
+							} else {
+								alert("Por Favor Complete todos los Campos Correctamente");
+							}
+							return false;
+						});
+
+					}
+				});
+
+			});
+
+			$('#cancelar').live('pageshow', function(event) {
+
+				var form = $('#form_cancelar');
+				form.bind('submit', function() {
+					form.validate();
+					if (form.valid()) {
+						arg = JSON.parse(unescape(window.localStorage["tickets"]));
+
+						sol = $("#cnmen").val();
+
+						$.mobile.showPageLoadingMsg();
+
+						$.ajax({
+							url : 'http://appscore.wadil.mx/cibernetica/proxy.php',
+							data : {
+								metodo : 'CancelarTicket',
+								parametros : {
+									cod : arg.co,
+									sol : sol,
+									usu : window.localStorage["userid"]
+								}
+							},
+							dataType : 'jsonp',
+							jsonp : 'callback',
+							jsonpCallback : 'jsonpCallback',
+							success : function(res) {
+								alert("Incidencia Cancelada");
+								$.mobile.hidePageLoadingMsg();
+								listarticket(arg.co);
+							}
+						});
+
+					} else {
+						alert("Por Favor Complete todos los Campos Correctamente");
+					}
+					return false;
+				});
+
+			});
+
+			$('#activar').live('pageshow', function(event) {
+
+				var form = $('#form_activar');
+				form.bind('submit', function() {
+					form.validate();
+					if (form.valid()) {
+						arg = JSON.parse(unescape(window.localStorage["tickets"]));
+						$.mobile.showPageLoadingMsg();
+
+						$.ajax({
+							url : 'http://appscore.wadil.mx/cibernetica/proxy.php',
+							data : {
+								metodo : 'Activar',
+								parametros : {
+									cod : arg.co
+								}
+							},
+							dataType : 'jsonp',
+							jsonp : 'callback',
+							jsonpCallback : 'jsonpCallback',
+							success : function(res) {
+								alert("Incidencia Activada");
+								$.mobile.hidePageLoadingMsg();
+								listarticket(arg.co);
+							}
+						});
+
+					} else {
+						alert("Por Favor Complete todos los Campos Correctamente");
+					}
+					return false;
+				});
+
+			});
+
+		</script>
+	</body>
 </html>

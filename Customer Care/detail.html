@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+
+	</head>
+
+	<body>
+
+		<div id="detail_page" data-role="page">
+
+			<div data-role="header" data-position="fixed">
+
+				<a href="#popupMenu" data-rel="popup" data-role="button" class="ui-btn-left" data-icon="gear" data-position-to="window">Menu</a>
+				<div data-role="popup" id="popupMenu" >
+					<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+					<ul data-role="listview" id="opcionesticket" data-inset="true" style="width:180px;" data-theme="b">
+
+					</ul>
+				</div>
+
+			
+
+				<h1><img src="images/logo2.png" style="margin: 0 auto; max-width: 413px; height: auto;"/ align="absmiddle"></h1>
+				<a href="#" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right" onclick="window.location = 'index.html'; window.localStorage.clear();">Salir</a>
+				<div data-role="navbar">
+					<ul>
+						<li>
+							<a href="#"  data-icon="info" class="ui-btn-active ui-state-persist">Detalle</a>
+						</li>
+						<li>
+							<a href="history.html" data-icon="grid" >Eventos</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div data-role="content" style="padding: 15px">
+				<h2 id="titulo"></h2>
+				<h5 id="responsable"></h5>
+
+				<label for="asunto"> Asunto </label>
+				<textarea name="" id="asunto" placeholder="" value="" type="text" readonly="true"></textarea>
+				<label for="detalle"> Detalle </label>
+				<textarea name="" id="detalle" placeholder="" readonly="true">inicial</textarea>
+				<label for="solucion"> Solucion </label>
+				<textarea name="" id="solucion" placeholder="" readonly="true"></textarea>				
+						
+               
+
+			</div>
+
+			<div data-role="footer" data-position="fixed">
+			    <a href="main.html" data-role="button" data-icon="arrow-l" data-iconpos="notext" class="ui-btn-left" ></a>
+				<h4>&copy; Cibern&eacute;tica de M&eacute;xico</h4>
+			</div>
+
+		</div>
+
+	</body>
+</html>

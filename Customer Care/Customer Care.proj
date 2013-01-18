@@ -28,6 +28,7 @@
     <Folder Include="App_Resources\Android\drawable-ldpi">
       <Platform>Android</Platform>
     </Folder>
+    <Folder Include="css\demos" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="App_Resources\iOS\icon.png" />
@@ -40,7 +41,7 @@
     <Resource Include="App_Resources\iOS\Icon-Small-50@2x.png" />
     <Resource Include="App_Resources\iOS\Default.png" />
     <Resource Include="App_Resources\iOS\Default@2x.png" />
-	<Resource Include="App_Resources\iOS\Default-568h@2x.png" />
+    <Resource Include="App_Resources\iOS\Default-568h@2x.png" />
     <Resource Include="App_Resources\iOS\Default-Portrait.png" />
     <Resource Include="App_Resources\iOS\Default-Landscape.png" />
     <Resource Include="App_Resources\iOS\Default-Portrait@2x.png" />
@@ -52,11 +53,71 @@
     <Resource Include="App_Resources\Android\drawable-ldpi\icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="activar.html" />
+    <Content Include="cancelar.html" />
+    <Content Include="cerrar.html" />
+    <Content Include="css\images\ajax-loader.gif" />
+    <Content Include="css\images\ajax-loader.png" />
+    <Content Include="css\images\icons-18-black.png" />
+    <Content Include="css\images\icons-18-white.png" />
+    <Content Include="css\images\icons-18-white_2.png" />
+    <Content Include="css\images\icons-36-black.png" />
+    <Content Include="css\images\icons-36-white.png" />
+    <Content Include="css\images\icons-36-white_2.png" />
+    <Content Include="css\jquery.mobile-1.1.0.css" />
+    <Content Include="css\jquery.mobile-1.1.0.js" />
+    <Content Include="css\jquery.mobile-1.1.0.min.css" />
+    <Content Include="css\jquery.mobile-1.1.0.min.js" />
+    <Content Include="css\jquery.mobile-1.1.1.css" />
+    <Content Include="css\jquery.mobile-1.1.1.min.css" />
+    <Content Include="css\jquery.mobile-1.2.0-alpha.1.css" />
+    <Content Include="css\jquery.mobile-1.2.0-alpha.1.min.css" />
+    <Content Include="css\jquery.mobile-1.2.0.css" />
+    <Content Include="css\jquery.mobile-1.2.0.min.css" />
+    <Content Include="css\jquery.mobile.simultaneous-transitions-replace.css" />
+    <Content Include="css\jquery.mobile.simultaneous-transitions.css" />
+    <Content Include="css\jquery.mobile.structure-1.1.0.css" />
+    <Content Include="css\jquery.mobile.structure-1.1.0.min.css" />
+    <Content Include="css\jquery.mobile.structure-1.1.1.css" />
+    <Content Include="css\jquery.mobile.structure-1.1.1.min.css" />
+    <Content Include="css\jquery.mobile.structure-1.2.0-alpha.1.css" />
+    <Content Include="css\jquery.mobile.structure-1.2.0-alpha.1.min.css" />
+    <Content Include="css\jquery.mobile.structure-1.2.0.css" />
+    <Content Include="css\jquery.mobile.structure-1.2.0.min.css" />
+    <Content Include="css\jquery.mobile.theme-1.1.0.css" />
+    <Content Include="css\jquery.mobile.theme-1.1.0.min.css" />
+    <Content Include="css\jquery.mobile.theme-1.1.1.css" />
+    <Content Include="css\jquery.mobile.theme-1.1.1.min.css" />
+    <Content Include="css\jquery.mobile.theme-1.2.0-alpha.1.css" />
+    <Content Include="css\jquery.mobile.theme-1.2.0-alpha.1.min.css" />
+    <Content Include="css\jquery.mobile.theme-1.2.0.css" />
+    <Content Include="css\jquery.mobile.theme-1.2.0.min.css" />
+    <Content Include="css\themes\cibernetica.css" />
+    <Content Include="css\themes\cibernetica.min.css" />
+    <Content Include="css\themes\images\ajax-loader.gif" />
+    <Content Include="css\themes\images\icons-18-black.png" />
+    <Content Include="css\themes\images\icons-18-white.png" />
+    <Content Include="css\themes\images\icons-36-black.png" />
+    <Content Include="css\themes\images\icons-36-white.png" />
+    <Content Include="detail.html" />
+    <Content Include="detail_2.html" />
+    <Content Include="escalar.html" />
+    <Content Include="history.html" />
+    <Content Include="images\e1.png" />
+    <Content Include="images\e10.png" />
+    <Content Include="images\e11.png" />
+    <Content Include="images\e2.png" />
+    <Content Include="images\e3.png" />
+    <Content Include="images\e4.png" />
+    <Content Include="images\e5.png" />
+    <Content Include="images\e6.png" />
+    <Content Include="images\e7.png" />
+    <Content Include="images\e8.png" />
+    <Content Include="images\e9.png" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\logo2.png" />
     <Content Include="index.html" />
-    <Content Include="css\index.css" />
-    <Content Include="js\index.js" />
-    <Content Include="img\logo.png" />
-    <Content Include="img\cordova.png" />
+    <Content Include="index_2.html" />
     <Content Include="cordova.ios.js">
       <Platform>iOS</Platform>
       <TargetName>cordova.js</TargetName>
@@ -65,6 +126,34 @@
       <Platform>Android</Platform>
       <TargetName>cordova.js</TargetName>
     </Content>
+    <Content Include="js\additional-methods.min.js" />
+    <Content Include="js\jquery-1.8.3.min.js" />
+    <Content Include="js\jquery.blockUI.js" />
+    <Content Include="js\jquery.js" />
+    <Content Include="js\jquery.mobile-1.1.0.js" />
+    <Content Include="js\jquery.mobile-1.1.0.min.js" />
+    <Content Include="js\jquery.mobile-1.1.1.js" />
+    <Content Include="js\jquery.mobile-1.1.1.min.js" />
+    <Content Include="js\jquery.mobile-1.2.0-alpha.1.js" />
+    <Content Include="js\jquery.mobile-1.2.0-alpha.1.min.js" />
+    <Content Include="js\jquery.mobile-1.2.0.js" />
+    <Content Include="js\jquery.mobile-1.2.0.min.js" />
+    <Content Include="js\jquery.mobile.simultaneous-transitions-replace-simple.js" />
+    <Content Include="js\jquery.mobile.simultaneous-transitions-replace.js" />
+    <Content Include="js\jquery.mobile.simultaneous-transitions-simple.js" />
+    <Content Include="js\jquery.mobile.simultaneous-transitions.js" />
+    <Content Include="js\jquery.mobile.transition-handler-simple.js" />
+    <Content Include="js\jquery.mobile.validate.js" />
+    <Content Include="js\jquery.validate.min.js" />
+    <Content Include="js\messages_es.js" />
+    <Content Include="js\xdate.js" />
+    <Content Include="main.html" />
+    <Content Include="main.js" />
+    <Content Include="my.css" />
+    <Content Include="rechazar.html" />
+    <Content Include="some.html" />
+    <Content Include="svalidacion.html" />
+    <Content Include="validar.html" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Telerik\ICE\Tools\Mobile\MobileTools.targets" />
 </Project>

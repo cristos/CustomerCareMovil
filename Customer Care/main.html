@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+</head>
+
+<body>
+
+<div id="main_page" data-role="page">
+
+    <div data-role="header" data-position="fixed">
+        <h1><img src="images/logo2.png" style="margin: 0 auto; max-width: 100%; height: auto;"/ align="absmiddle"></h1>
+		<a href="#" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right" onclick="window.location = 'index.html'; window.localStorage.clear();">Salir</a>     
+		<div data-role="navbar">
+		<ul>
+			<li><a id="tab1" href="#" onclick="window.localStorage['inicio'] = 0; window.localStorage['edoactual'] = 1; listartickets();" data-icon="info">Inactivas</a></li>
+			<li><a id="tab2" href="#" onclick="window.localStorage['inicio'] = 0; window.localStorage['edoactual'] = 2; listartickets();" data-icon="check" >Activas</a></li>
+			<li><a id="tab3" href="#" onclick="window.localStorage['inicio'] = 0; window.localStorage['edoactual'] = 3; listartickets();" data-icon="gear">En Validación</a></li>
+			<li><a id="tab4" href="#" onclick="window.localStorage['inicio'] = 0; window.localStorage['edoactual'] = 4; listartickets();" data-icon="minus">Cerradas</a></li>
+			<li><a id="tab5" href="#" onclick="window.localStorage['inicio'] = 0; window.localStorage['edoactual'] = 5; listartickets();" data-icon="delete" >Canceladas</a></li>
+		</ul>
+	</div>
+		
+		
+		</div>
+    <div data-role="content" id="listadodeticket">    
+    	
+		<input type="search" name="csearch" id="csearch" value="" placeholder="Buscar"/>	
+	    
+	     <ul data-role="listview" class="ui-listview" id="lista_tickets" data-inset="true">
+		</ul>
+		<h6 id="contador"></h6>
+		<a id="bmore" href="#" data-role="button" onclick="window.localStorage['inicio']= parseInt(window.localStorage['inicio']) + 10; listartickets2();">Ver Más</a> 
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+       <!-- <a id="anterior" href="#" data-role="button" data-icon="arrow-l" data-iconpos="notext" class="ui-btn-left" onclick="window.localStorage['inicio'] = parseInt(window.localStorage['inicio']) - 10; listartickets();"></a>-->
+		<h4>&copy; Cibern&eacute;tica de M&eacute;xico</h4>
+		<!--<a id="siguiente" href="#" data-role="button" data-icon="arrow-r" data-iconpos="notext" class="ui-btn-right" onclick="window.localStorage['inicio']= parseInt(window.localStorage['inicio']) + 10; listartickets();"></a>-->
+    </div>
+
+</div>
+
+</body>
+</html>
