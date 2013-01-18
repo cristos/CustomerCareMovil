@@ -40,7 +40,7 @@ function handleLogin() {
 				    if(isNumber(res.AutenticarResult)) {
 						
 						numtemp=res.AutenticarResult;	
-						window.localStorage["userid"]=res.AutenticarResult;			
+						window.localStorage["userid"]=res.AutenticarResult;				
 					
                         var reslt="";
                         for(var j=0;j<res.AutenticarResult.length;j++){reslt+="" + ((1*res.AutenticarResult[j]+5)%10)}
@@ -97,7 +97,7 @@ function handleLogin() {
 				   // }				
 					
 					res.AutenticarResult=reslt;
-					
+                        
 					window.localStorage["userid2"]=res.AutenticarResult;	
 					window.localStorage["username"] = u;
 					window.localStorage["password"] = p;             
@@ -126,7 +126,24 @@ function deviceReady() {
 	});
 	$.mobile.changePage("#loginPage");
 }
-
+					
+					
+					
+					window.localStorage["userid2"]=res.AutenticarResult;	
+					window.localStorage["username"] = u;
+					window.localStorage["password"] = p;             
+					$.mobile.changePage("main.html");
+				} else {
+					$.mobile.hidePageLoadingMsg();
+					alert(res.AutenticarResult);
+				}
+				
+				$("#submitButton").removeAttr("disabled");
+				}
+			});
+    } else {
+        navigator.notification.alert("You must enter a username and password", function() {});
+        $("#submitButton
 
 //Personales
 
